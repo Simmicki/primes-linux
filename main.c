@@ -6,7 +6,7 @@
 #include <signal.h>
 #include <stdint.h>
 #include <time.h>
-#include <sys\stat.h> // remember / in linux file system
+#include <sys/stat.h> // remember / in linux file system
 
 FILE *savefile;
 unsigned long long i = 2;
