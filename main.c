@@ -1,4 +1,4 @@
-// Copyright © 2021 Michael Simonsen
+// Copyright © 2021-2025 Michael Simonsen
 // Programname: primes
 
 #include <stdio.h>
@@ -20,15 +20,15 @@ struct stat status;
 void sigint_handler(int sig_num) /* Signal Handler for SIGINT */
 {
 	setbuf(stdout, NULL);
-	printf("\nInterrupt signal (%d) received.\n",sig_num);
-	printf("Processing: %llu\n",i);
-	printf("Saving progress to prime.ini\n");
+	printf("\nInterrupt signal (%d) modtaget.\n",sig_num);
+	printf("Nået til: %llu\n",i);
+	printf("Gemmer fremgang i prime.ini\n");
 	savefile = fopen ("prime.ini","w+");
 	fstat(fileno(savefile),&status);
 //	printf("File was last modified : %s",ctime(&status.st_mtime));
 	fprintf(savefile,"%llu\n",i);
 	fclose(savefile);
-	printf("File saved, now terminating !\n");
+	printf("Fil gemt, afslutter nu !\n");
 	exit(0);
 }
 
@@ -39,27 +39,27 @@ int main()
 	savefile=fopen ("prime.ini","r"); /* check if config file exist */
 	if (savefile)
 	{
-		printf("config file exists\n");
+		printf("Konfigurationsfil fundet\n");
 		fstat(fileno(savefile),&status);
-		printf("File was last modified : %s",ctime(&status.st_mtime));
-		printf("reading: prime.ini\n");
+		printf("Filen blev sidst ændret : %s",ctime(&status.st_mtime));
+		printf("læser: prime.ini\n");
 		fscanf(savefile,"%llu",&i);
 		fclose(savefile);
 		num1=i;
-		printf("continuing with: %llu\n\n",num1);
+		printf("fortsætter med: %llu\n\n",num1);
 	}
 	else
 	{ /* create config file */
-		printf("prime.ini doesn't exist\n");
-		printf("creating it now\n");
+		printf("Kan ikke finde prime.ini\n");
+		printf("opretter den nu\n");
 		savefile = fopen ("prime.ini","w");
 		fprintf(savefile,"%d\n",2);
 		fclose(savefile);
-		puts("done");
+		puts("fil oprettet");
 	}
 
 // Calculate and display prime numbers
-   printf("Prime numbers from %llu:\n", num1);
+   printf("Primtal fra %llu:\n", num1);
    for(i=num1+1; i<num2; ++i)
    {
 	  flag_var=0;
